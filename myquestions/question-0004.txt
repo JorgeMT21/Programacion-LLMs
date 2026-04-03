@@ -1,0 +1,16 @@
+El Problema:
+
+Una empresa de seguros quiere estimar el costo esperado de siniestros a partir de variables numéricas como edad del cliente, número de incidentes previos, valor del vehículo y antigüedad de la póliza. Como el costo es una variable continua no negativa y puede estar sesgada, el equipo decide utilizar un modelo TweedieRegressor.
+
+Tu Misión:
+
+Escribe una función llamada evaluar_modelo_tweedie(df, columnas, columna_objetivo, test_size) que realice lo siguiente:
+
+Use columnas como variables predictoras.
+Use columna_objetivo como variable objetivo continua no negativa.
+Divida los datos en entrenamiento y test usando train_test_split con test_size.
+Estandarice las variables predictoras usando StandardScaler de sklearn.
+Entrene un modelo TweedieRegressor de sklearn.linear_model.
+Prediga los valores del conjunto de test.
+Calcule el Mean Absolute Error (mean_absolute_error) entre los valores reales y las predicciones.
+Devuelva un único número (float) con el valor del error absoluto medio en test.
