@@ -1,1 +1,13 @@
+El Problema:
 
+Un equipo de ciencia de datos quiere medir qué tan relacionadas están varias variables numéricas con una variable objetivo categórica antes de entrenar un modelo de clasificación. Para ello, desean usar la prueba chi-cuadrado de sklearn, que requiere que las variables de entrada sean no negativas.
+
+Tu Misión:
+
+Escribe una función llamada calcular_scores_chi2(df, columnas, columna_objetivo) que realice lo siguiente:
+
+Use las columnas indicadas en columnas como variables predictoras.
+Use columna_objetivo como variable objetivo categórica.
+Escale las variables predictoras al rango [0, 1] usando MinMaxScaler de sklearn, para garantizar que no haya valores negativos.
+Calcule los scores de chi-cuadrado usando sklearn.feature_selection.chi2.
+Devuelva un array de numpy con los scores de chi-cuadrado, en el mismo orden que columnas.
