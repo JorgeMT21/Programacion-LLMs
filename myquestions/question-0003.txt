@@ -1,0 +1,16 @@
+El Problema:
+
+Una empresa de movilidad quiere predecir cuántos viajes realizará un usuario en una semana a partir de variables numéricas como distancia media recorrida, número de sesiones en la app, tiempo medio de uso y número de búsquedas realizadas. Como la variable objetivo representa un conteo (0, 1, 2, 3, ...), el equipo decide usar un modelo específico para este tipo de datos.
+
+Tu Misión:
+
+Escribe una función llamada evaluar_modelo_poisson(df, columnas, columna_objetivo, test_size) que realice lo siguiente:
+
+Use columnas como variables predictoras.
+Use columna_objetivo como variable objetivo de conteo.
+Divida los datos en entrenamiento y test usando train_test_split con test_size.
+Estandarice las variables predictoras usando StandardScaler de sklearn.
+Entrene un modelo PoissonRegressor de sklearn.linear_model.
+Prediga los valores del conjunto de test.
+Calcule el error absoluto medio (mean_absolute_error) entre los valores reales y las predicciones.
+Devuelva un único número (float) con el valor del error absoluto medio en test.
