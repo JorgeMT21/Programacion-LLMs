@@ -1,1 +1,15 @@
+El Problema:
 
+Un equipo de analítica quiere predecir una variable continua a partir de varias variables numéricas, pero sospecha que el dataset contiene valores atípicos que pueden perjudicar a una regresión lineal tradicional. Por ello, desean usar un modelo de regresión robusta y medir su error absoluto mediano.
+
+Tu Misión:
+
+Escribe una función llamada evaluar_regresion_robusta(df, columnas, columna_objetivo, test_size) que realice lo siguiente:
+
+Use columnas como variables predictoras.
+Use columna_objetivo como variable objetivo continua.
+Divida los datos en entrenamiento y test usando train_test_split con test_size.
+Entrene un modelo TheilSenRegressor de sklearn.linear_model.
+Prediga los valores del conjunto de test.
+Calcule el Median Absolute Error usando sklearn.metrics.median_absolute_error.
+Devuelva un único número (float) con el error obtenido en test.
