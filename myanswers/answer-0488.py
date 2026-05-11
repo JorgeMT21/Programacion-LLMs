@@ -14,7 +14,7 @@ def agrupar_danos(df, n_clusters):
     # 3. Obtener las etiquetas de cluster
     labels = kmeans.fit_predict(X)
 
-    # 4. Devolver las etiquetas
+    # 4. Devolver el array de etiquetas
     return labels
 
 
@@ -38,3 +38,11 @@ print(output_data)
 
 print("\n=== COMPROBACIÓN EXACTA ===")
 print(np.array_equal(resultado, output_data))
+from sklearn.metrics import adjusted_rand_score
+
+print("\n=== COMPROBACIÓN POR AGRUPAMIENTO EQUIVALENTE ===")
+ari = adjusted_rand_score(output_data, resultado)
+print(ari)
+
+print("\n¿El agrupamiento es equivalente?")
+print(np.isclose(ari, 1.0))
