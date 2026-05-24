@@ -1,25 +1,13 @@
-import pandas as pd
+from sklearn.cluster import KMeans
 
-def analizar_eficiencia_rutas(df):
-    df_valid = df[df["status"] != "failed"].copy()
+def agrupar_danos(df, n_clusters):
+    X = df[["x", "y"]]
 
-    df_valid["delay"] = df_valid["actual_duration"] - df_valid["planned_duration"]
-
-    resultado = (
-        df_valid.groupby("route_id")
-        .agg(
-            delay_promedio=("delay", "mean"),
-            entregas=("route_id", "count")
-        )
-        .reset_index()
+    kmeans = KMeans(
+        n_clusters=n_clusters,
+        n_init=10
     )
 
-    resultado = resultado[resultado["entregas"] >= 3]
+    labels = kmeans.fit_predict(X)
 
-    resultado = (
-        resultado
-        .sort_values("delay_promedio", ascending=False)
-        .reset_index(drop=True)
-    )
-
-    return resultado
+    return labels
