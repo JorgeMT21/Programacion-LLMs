@@ -11,3 +11,10 @@ Diagnóstico pregunta 0201:
 La solución analizar_eficiencia_rutas(df) cumple con la lógica solicitada: filtra entregas no fallidas, calcula el retraso, agrupa por ruta, calcula el retraso promedio y el número de entregas, conserva rutas con al menos 3 entregas y ordena el resultado.
 
 Sin embargo, el generador de caso de uso no retorna el formato estándar (input_data, output_data). En lugar de retornar directamente {"df": df}, res, retorna caso, "Analizar la eficiencia de las rutas de transporte", donde caso contiene las llaves "input" y "output". Por eso el evaluador intenta llamar la función con argumentos input y output, generando el error analizar_eficiencia_rutas() got an unexpected keyword argument 'input'.
+
+Diagnóstico pregunta 0488:
+La solución agrupar_danos(df, n_clusters) cumple con la lógica solicitada, ya que selecciona las columnas x e y, aplica KMeans de sklearn con el número de clusters indicado y devuelve un arreglo con las etiquetas asignadas a cada punto.
+
+Sin embargo, el evaluador reporta Array contents do not match. Esto puede ocurrir porque el generador de caso de uso utiliza KMeans(n_clusters=n_clusters, n_init=10) sin definir random_state. Al no fijar una semilla, KMeans puede producir etiquetas diferentes entre ejecuciones. Además, en clustering las etiquetas numéricas de los grupos pueden intercambiarse; por ejemplo, un grupo puede aparecer como 0 en una ejecución y como 1 en otra, aunque el agrupamiento sea equivalente.
+
+Por esta razón, el error no necesariamente indica que la lógica del solucionador esté mal, sino que la comparación exacta de etiquetas puede fallar por la aleatoriedad y el orden arbitrario de las etiquetas de KMeans.
