@@ -6,3 +6,8 @@ Sin embargo, el evaluador automático reporta un error de comparación: None != 
 return {'y_real': y_real, 'y_pred': y_pred}, None
 
 Por lo tanto, el evaluador compara el resultado correcto de la función, que es un valor numérico tipo float, contra None. En este caso, el problema corresponde al generador del caso de uso, ya que debería calcular y retornar como output_data el valor esperado de la precisión positiva.
+
+Diagnóstico pregunta 0201:
+La solución analizar_eficiencia_rutas(df) cumple con la lógica solicitada: filtra entregas no fallidas, calcula el retraso, agrupa por ruta, calcula el retraso promedio y el número de entregas, conserva rutas con al menos 3 entregas y ordena el resultado.
+
+Sin embargo, el generador de caso de uso no retorna el formato estándar (input_data, output_data). En lugar de retornar directamente {"df": df}, res, retorna caso, "Analizar la eficiencia de las rutas de transporte", donde caso contiene las llaves "input" y "output". Por eso el evaluador intenta llamar la función con argumentos input y output, generando el error analizar_eficiencia_rutas() got an unexpected keyword argument 'input'.
