@@ -1,13 +1,13 @@
 Diagnóstico pregunta 0634:
-La solución desarrollada para evaluar_precision_positiva(y_real, y_pred) cumple con lo solicitado, ya que calcula la precisión de la clase positiva usando precision_score de sklearn.metrics, con pos_label=1 y zero_division=0, y retorna el resultado como un valor float.
+La función evaluar_precision_positiva(y_real, y_pred) sí calcula correctamente qué tan acertado es el modelo y devuelve un valor numérico tipo float.
 
-Sin embargo, el evaluador automático reporta un error de comparación: None != 0.5957446808510638. Esto ocurre porque el generador de caso de uso retorna None como salida esperada:
+El problema está en el generador, porque este devuelve None como salida esperada:
 
 return {'y_real': y_real, 'y_pred': y_pred}, None
 
-Por lo tanto, el evaluador compara el resultado correcto de la función, que es un valor numérico tipo float, contra None. En este caso, el problema corresponde al generador del caso de uso, ya que debería calcular y retornar como output_data el valor esperado de la precisión positiva.
+Por eso el evaluador compara None contra el valor numérico calculado por la función. El error no está en el solucionador, sino en que el generador no calcula ni retorna el output_data esperado.
 
 Diagnóstico pregunta 0488:
 La solución agrupar_danos(df, n_clusters) cumple con la lógica solicitada, ya que selecciona las columnas x e y, aplica KMeans de sklearn con el número de clusters indicado y devuelve un arreglo con las etiquetas asignadas a cada punto.
 
-Sin embargo, el evaluador reporta Array contents do not match. Esto puede ocurrir porque el generador de caso de uso utiliza KMeans(n_clusters=n_clusters, n_init=10) sin definir random_state. Al no fijar una semilla, KMeans puede producir etiquetas diferentes entre ejecuciones. Además, en clustering las etiquetas numéricas de los grupos pueden intercambiarse; por ejemplo, un grupo puede aparecer como 0 en una ejecución y como 1 en otra, aunque el agrupamiento sea equivalente.
+Sin embargo, el evaluador reporta Array contents do not match. Esto puede ocurrir porque el generador de caso de uso utiliza KMeans(n_clusters=n_clusters, n_init=10) sin definir random_state. Al no fijar una semilla, KMeans puede producir etiquetas diferentes entre ejecuciones. El problema es que el generador usa KMeans sin una semilla fija y el evaluador hace una comparación exacta de las etiquetas.
