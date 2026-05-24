@@ -14,10 +14,8 @@ def analizar_eficiencia_rutas(df):
         .reset_index()
     )
 
-    resultado = resultado[resultado["entregas"] >= 3]
-
     resultado = (
-        resultado
+        resultado[resultado["entregas"] >= 3]
         .sort_values("delay_promedio", ascending=False)
         .reset_index(drop=True)
     )
