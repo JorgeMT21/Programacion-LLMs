@@ -1,9 +1,6 @@
 import pandas as pd
 
-def analizar_eficiencia_rutas(df=None, input=None, output=None):
-    if df is None and input is not None:
-        df = input["df"]
-
+def analizar_eficiencia_rutas(df):
     df_valid = df[df["status"] != "failed"].copy()
 
     df_valid["delay"] = df_valid["actual_duration"] - df_valid["planned_duration"]
