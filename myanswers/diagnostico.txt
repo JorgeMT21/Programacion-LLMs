@@ -11,4 +11,3 @@ Diagnóstico pregunta 0488:
 La solución agrupar_danos(df, n_clusters) cumple con la lógica solicitada, ya que selecciona las columnas x e y, aplica KMeans de sklearn con el número de clusters indicado y devuelve un arreglo con las etiquetas asignadas a cada punto.
 
 Sin embargo, el evaluador reporta Array contents do not match. Esto puede ocurrir porque el generador de caso de uso utiliza KMeans(n_clusters=n_clusters, n_init=10) sin definir random_state. Al no fijar una semilla, KMeans puede producir etiquetas diferentes entre ejecuciones. Además, en clustering las etiquetas numéricas de los grupos pueden intercambiarse; por ejemplo, un grupo puede aparecer como 0 en una ejecución y como 1 en otra, aunque el agrupamiento sea equivalente.
-
